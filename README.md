@@ -1,64 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+[![N|Solid](https://s3.eu-west-2.amazonaws.com/parent-documents/assets/parent_logo.png)](http://parent.eu)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Challenge Idea
+We have two providers collect data from them in json files we need to read and make some filter operations on them to get the result
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- `DataProviderX` data is stored in [DataProviderX.json]
+- `DataProviderY` data is stored in [DataProviderY.json]
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+`DataProviderX  schema is 
+```
+{
+  parentAmount:200,
+  Currency:'USD',
+  parentEmail:'parent1@parent.eu',
+  statusCode:1,
+  registerationDate: '2018-11-30',
+  parentIdentification: 'd3d29d70-1d25-11e3-8591-034165a3a613'
+}
+```
 
-## Learning Laravel
+we have three status for `DataProviderX` 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- `authorised` which will have statusCode `1`
+- `decline` which will have statusCode `2`
+- `refunded` which will have statusCode `3`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+`DataProviderY  schema is 
+```
+{
+  balance:300,
+  currency:'AED',
+  email:'parent2@parent.eu',
+  status:100,
+  created_at: '22/12/2018',
+  id: '4fc2-a8d1'
+}
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+we have three status for `DataProviderY` 
 
-### Premium Partners
+- `authorised` which will have statusCode `100`
+- `decline` which will have statusCode `200`
+- `refunded` which will have statusCode `300`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+## Acceptance Criteria
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Using PHP Laravel, implement this API endpoint `/api/v1/users`
 
-## Code of Conduct
+- it should list all users which combine transactaions from all the available provider`DataProviderX` and `DataProviderY` )
+- it should be able to filter resullt by payment providers for example `/api/v1/users?provider=DataProviderX` it should return users from DataProviderX
+- it should be able to filter result three statusCode (`authorised`, `decline`, `refunded`) for example /api/v1/users?statusCode=authorised it should return all users from all providers that have status code authorised
+- it should be able to filer by amount range for example `/api/v1/users?balanceMin=10&balanceMax=100` it should return result between 10 and 100 including 10 and 100
+- it should be able to filer by `currency` 
+- it should be able to combine all this filter together 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## The Evaluation
 
-## Security Vulnerabilities
+Task will be evaluated based on
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Code quality
+2. Application performance in reading large files 
+3. Code scalability : ability to add  `DataProviderZ` by small changes
+4. Unit tests coverage
+5. Docker

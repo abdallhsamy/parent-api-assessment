@@ -1,0 +1,44 @@
+{
+    "users":[
+        {
+            "parentAmount":280,
+            "Currency":"EUR",
+            "parentEmail":"parent1@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2018-11-30",
+            "parentIdentification": "d3d29d70-1d25-11e3-8591-034165a3a613"
+        },
+        {
+            "parentAmount":200.5,
+            "Currency":"USD",
+            "parentEmail":"parent2@parent.eu",
+            "statusCode":2,
+            "registerationDate": "2018-01-01",
+            "parentIdentification": "e3rffr-1d25-dddw-8591-034165a3a613"
+        },
+        {
+            "parentAmount":500,
+            "Currency":"EGP",
+            "parentEmail":"parent3@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2018-02-27",
+            "parentIdentification": "4erert4e-2www-wddc-8591-034165a3a613"
+        },
+        {
+            "parentAmount":400,
+            "Currency":"AED",
+            "parentEmail":"parent4@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2019-09-07",
+            "parentIdentification": "d3dwwd70-1d25-11e3-8591-034165a3a613"
+        },
+        {
+            "parentAmount":200,
+            "Currency":"EUR",
+            "parentEmail":"parent5@parent.eu",
+            "statusCode":1,
+            "registerationDate": "2018-10-30",
+            "parentIdentification": "d3d29d40-1d25-11e3-8591-034165a3a6133"
+        }
+    ]
+}
